@@ -1,6 +1,12 @@
 import numpy as np
 from model.utils import onehot_array
 
+def MAE_grad(y, y_pred):
+    '''
+    Derivative of MAE loss w.r.t y_pred
+    '''
+    return (1/len(y)) * np.sign(y_pred - y)
+
 def MSE_grad(y,y_pred):
 	'''
 	Derivative of MSE loss w.r.t y_pred (not w)
