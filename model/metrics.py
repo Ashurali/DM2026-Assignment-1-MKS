@@ -46,7 +46,7 @@ def evaluate_linear_regression(y_true, y_pred, title='Linear Regression Evaluati
     return metrics
 
 # Here is the evalution function for logistic regression
-def evaluate_binary_classifier(y_true, y_pred, title='Model Evaluation'):
+def evaluate_binary_classifier(y_true, y_pred, title='Model Evaluation', save_path=None):
     y_true = np.asarray(y_true).ravel().astype(int)
     y_pred = np.asarray(y_pred).ravel().astype(int)
 
@@ -66,7 +66,7 @@ def evaluate_binary_classifier(y_true, y_pred, title='Model Evaluation'):
     fig, ax = plt.subplots(figsize=(8, 4.2))
 
     im = ax.imshow(cm, cmap='Blues')
-    ax.set_title('Confusion Matrix')
+    ax.set_title(f'Confusion Matrix\n{title}')
     ax.set_xlabel('Predicted label')
     ax.set_ylabel('True label')
     ax.set_xticks([0, 1])
@@ -77,6 +77,8 @@ def evaluate_binary_classifier(y_true, y_pred, title='Model Evaluation'):
     fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
 
     plt.tight_layout()
+    if save_path:
+        fig.savefig(save_path, dpi=150, bbox_inches='tight')
     plt.show()
 
     return metrics
