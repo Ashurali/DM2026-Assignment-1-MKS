@@ -60,16 +60,33 @@
 
 ## Q5 — Enhancing K-Means with Association Rule Mining (35 pts) — *biggest weight*, **new notebook** `Mobile_Price_KMeans_Plus_ARM.ipynb`
 
-Brainstorming directions to discuss before coding:
+### Grading rubric (added in v2, 2026-04-22)
+| Tier | Points | Requirements |
+|---|---|---|
+| Bottom | 0–10 | Incomplete results **OR** no design description |
+| Middle | 10–20 | Full results + brief design description |
+| **Top (target)** | **20–35** | Full results + design + **framework diagram AND/OR additional experimental analysis** |
 
+→ Aim for the top tier. Need framework diagram **and** extra analysis on top of the required comparison.
+
+### Brainstorming directions
 1. **Rule-based feature engineering** — discretize all features (like Q3), mine frequent itemsets / rules per (tentative cluster, label) pair, encode each sample with a binary indicator vector "matches rule i?", concatenate to standardized features, then K-Means.
 2. **Rule-guided initialization** — find frequent itemsets that co-occur with each `price_range` value, use the centroid of samples matching the strongest rule per class as the K-Means seed (instead of `k-means++` randomness).
 3. **Rule-weighted distance** — give higher weight to features that appear in high-lift rules (those features carry stronger class signal).
 
-- [ ] Pick one approach (Option 2 or a hybrid is most defensible) and document the inspiration (cite e.g. "association-rule-guided clustering" papers, or honestly "inspired by Q3 and class lecture on rule mining").
+### Required deliverables (must-have for ≥10 pts)
+- [ ] Pick one approach (Option 2 or a hybrid is most defensible) and document the inspiration. Cite **Jinbo Shang, DSC148 HW2/HW3** (added to v2 references) and any rule-guided-clustering papers.
 - [ ] Implement baseline K-Means + improved K-Means.
-- [ ] Loop `random_state ∈ {0, 10, 42, 100, 999}`, average accuracy / precision / recall / F1 (use Hungarian / `linear_sum_assignment` to map cluster id → label, since K-Means labels are unordered).
-- [ ] Report comparison table + framework figure.
+- [ ] Loop `random_state ∈ {0, 10, 42, 100, 999}`, report **average** accuracy / precision / recall / F1 for both methods (use Hungarian / `linear_sum_assignment` to map cluster id → label).
+- [ ] Brief written design description.
+
+### Top-tier add-ons (push toward 35 pts)
+- [ ] **Framework diagram** of the proposed pipeline (draw with mermaid / draw.io / matplotlib boxes, save to `chart/Q5_framework.png`).
+- [ ] **Ablation:** report results for (a) baseline K-Means, (b) ARM-init only, (c) ARM-features only, (d) full method. Shows which component contributes what.
+- [ ] **Per-seed table** with mean ± std, not just mean — demonstrates stability.
+- [ ] **Sensitivity analysis** — vary the support / confidence / lift thresholds used for rule mining, plot effect on final clustering metrics.
+- [ ] **Cluster-vs-label confusion matrix** for both methods (after Hungarian alignment) — visual proof of where the improvement comes from.
+- [ ] **Discussion** of why it works/fails per class (e.g., does ARM help most on the boundary classes 1 and 2 that PCA struggled with in Q4?).
 
 ---
 
