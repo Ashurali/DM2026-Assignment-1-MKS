@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pandoc --track-changes=all \"DM_Assignment 2.docx\" -o /tmp/asg2.md)",
+      "Read(//tmp/**)",
+      "Bash(python \"C:/Users/Michael/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/8bce5c05-994b-4853-8d23-332a679ca157/bca2d0f3-8c43-4411-a4f8-9be272568f87/skills/docx/scripts/office/unpack.py\" \"DM_Assignment 2.docx\" /tmp/asg2_unpacked/)",
+      "Bash(python -c \"import json; nb=json.load\\(open\\('Real_World_Classification.ipynb',encoding='utf-8'\\)\\); [print\\(f'=== Cell {i} \\({c[\\\\\"cell_type\\\\\"]}\\) ===\\\\n' + ''.join\\(c['source']\\)[:2000] + '\\\\n'\\) for i,c in enumerate\\(nb['cells']\\)]\")",
+      "Bash(python -c ' *)",
+      "Bash(jupyter nbconvert *)",
+      "Bash(python -m jupyter nbconvert --to notebook --execute Real_World_Classification.ipynb --output Real_World_Classification.ipynb)",
+      "Bash(pip install *)",
+      "Bash(python -m pip install nbconvert)",
+      "Bash(python -m nbconvert --to notebook --execute Real_World_Classification.ipynb --output Real_World_Classification.ipynb)"
+    ]
+  }
+}
